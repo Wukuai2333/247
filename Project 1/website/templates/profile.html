@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>User Profile</h1>
+      <h2>{{ user.username }}</h2>
+      <p>Email: {{ user.email }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Events Signed Up For:</h2>
+      {% if user.eventsignups %}
+        {% for eventsignup in user.eventsignups %}
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ eventsignup.event.name }}</h5>
+              <p class="card-text">Event Date: {{ eventsignup.event.date }}</p>
+              <p class="card-text">Location: {{ eventsignup.event.location }}</p>
+              <p class="card-text">Your Name: {{ eventsignup.name }}</p>
+              <p class="card-text">Your Age: {{ eventsignup.age }}</p>
+              <p class="card-text">Your Phone: {{ eventsignup.phone }}</p>
+              <p class="card-text">Your Email: {{ eventsignup.email }}</p>
+              <p class="card-text">Your Availability: {{ eventsignup.time }}</p>
+              <p class="card-text">Introduction: {{ eventsignup.introduction }}</p>
+            </div>
+          </div>
+          <br>
+        {% endfor %}
+      {% else %}
+        <p>You haven't signed up for any events yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
